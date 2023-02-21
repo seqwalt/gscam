@@ -31,21 +31,13 @@ Install dependencies via `rosdep`.
 
 Ubuntu Install:
 
-##### 12.04
+##### 20.04
 
-```sh
-sudo add-apt-repository ppa:gstreamer-developers/ppa
-sudo apt-get install gstreamer1.0-tools libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev
 ```
-
-##### 14.04
-
-```sh
 sudo apt-get install gstreamer1.0-tools libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev
 ```
 
 #### Usage:
-* Use the CMake flag `-DGSTREAMER_VERSION_1_x=On` when building
 * See the [Video4Linux2 launchfile example](examples/v4l.launch) for
   an example of the differences in the GStreamer config lines
 
