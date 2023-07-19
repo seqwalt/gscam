@@ -4,9 +4,10 @@
   <arg name="cam_name" default="csi_cam" />		     <!-- The name of the camera (corrsponding to the camera info) -->
   <arg name="frame_id" default="/$(arg cam_name)_link" />    <!-- The TF frame ID. -->
   <arg name="sync_sink" default="true" />                    <!-- Synchronize the app sink. Setting this to false may resolve problems with sub-par framerates. -->
-  <arg name="width" default="1920" />                        <!-- Image Width -->
-  <arg name="height" default="1080" />                       <!-- Image Height -->
+  <arg name="width" default="960" />                         <!-- Image Width -->
+  <arg name="height" default="540" />                        <!-- Image Height -->
   <arg name="fps" default="30" />                            <!-- Desired framerate. True framerate may not reach this if set too high. -->
+  <arg name="encoding" default="mono8" />		     <!-- Options: rgb8, mono8, jpeg -->
   <arg name="cam_info_file" default="nvidia_csi_params.yaml" />
 
   <!-- Make arguments available to parameter server -->
@@ -25,7 +26,12 @@
     <param name="camera_name" value="$(arg cam_name)" />
     <param name="frame_id" value="$(arg frame_id)" />
     <param name="sync_sink" value="$(arg sync_sink)" />
+    <param name="image_encoding" value="$(arg encoding)" />
     <param name="camera_info_url" value="package://gscam/launch/$(arg cam_info_file)"/>
     <remap from="camera/image_raw" to="$(arg cam_name)/image_raw" />
   </node>
+
+  <!-- Rectify image -->
+  <node name="image_proc" pkg="image_proc" type="image_proc" ns="$(arg cam_name)"/>
+
 </launch>
